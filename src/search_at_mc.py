@@ -12,6 +12,8 @@ def search(apps):
         }
         response = requests.get("https://www.metacritic.com/game/ios/" + slug, headers=headers)
         rating = string_proc.find_value_mc(str(response.content))
+        if rating == -1:
+            rating = string_proc.find_value_mc_2(str(response.content))
         if rating != -1:
             log.write(str(app[0]) + ' ' + app[1] + ' Rating Value = ' + str(rating))
             print(str(app[0]) + ' ' + app[1] + ' ' + app[2] + ' Successfully!!! Rating Value = ' + str(rating))
