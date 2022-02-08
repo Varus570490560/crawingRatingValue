@@ -1,0 +1,16 @@
+63981455411 Star Wars: Galaxy of Heroes Rating Value = 70
+192342982640 Jetpack Joyride Rating Value = 90
+5377959037375 Hungry Shark World Rating Value = 87
+5482248154353 Need for Speed Most Wanted Rating Value = 82
+6391064233244 Smurfs’ Village Rating Value = 63
+7394866190863 Wild Blood Rating Value = 70
+9189798116681 Might & Magic: Elemental Guardians Rating Value = 63
+9472037473705 FarmVille 2: Country Escape Rating Value = 64
+9954556542648 Family Guy: The Quest for Stuff Rating Value = 47
+13044536052896 Lara Croft: Relic Run Rating Value = 71
+20666961470105 Marvel Future Fight Rating Value = 79
+22085412053209 Oceanhorn: Become a legend! Rating Value = 85
+22268569521958 Lifeline Rating Value = 77
+23227088583620 Final Fantasy XV Pocket Edition Rating Value = 79
+25872694510823 GRID Autosport Rating Value = 90
+26498345860330 Pokémon Quest Rating Value = 62

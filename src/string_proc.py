@@ -45,6 +45,20 @@ def find_value_mc(source):
         return -1
 
 
+def find_value_mc_percent(source):
+    value_str = ""
+    begin_index = source.find('"ratingValue">') + 14
+    end_index = source.find('<', begin_index) - 1
+    if begin_index != 13:
+        i = begin_index
+        while i <= end_index:
+            value_str += source[i]
+            i += 1
+    if value_str == "":
+        return -1
+    return int(value_str)
+
+
 def is_float(s):
     pattern = '^-?\d+\.?\d*$'  # 匹配数字: 从头开始匹配 -0或1次 数字1或多次 .0或1次 数字0或多次 匹配到字符串末尾
     match = re.match(pattern, s)
