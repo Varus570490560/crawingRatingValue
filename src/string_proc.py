@@ -26,3 +26,17 @@ def find_value(source):
         return -1
     return float(value_str)
 
+
+def find_value_mc(source):
+    value_str=""
+    begin_index = source.find('user large game mixed') + 23
+    end_index = source.find('<', begin_index) - 1
+    if begin_index!=22:
+        i = begin_index
+        while i<=end_index:
+            value_str+=source[i]
+            i+=1
+    if value_str== "":
+        return -1
+    return float(value_str)
+
