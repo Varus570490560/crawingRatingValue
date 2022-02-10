@@ -1,10 +1,10 @@
 import requests
 import string_proc
+import connect_database
 
 
 def search(apps):
-    file_name = './response_app_id/app_id2.txt'
-    log = open(file_name, 'w')
+    db = connect_database.open_database_jojoy()
     for app in apps:
         slug = string_proc.slug_proc(app[2])
         headers = {
@@ -15,18 +15,19 @@ def search(apps):
         if rating == -1:
             rating = string_proc.find_value_mc_2(str(response.content))
         if rating != -1:
-            log.write(str(app[0]) + ' ' + app[1] + ' Rating Value = ' + str(rating))
             print(str(app[0]) + ' ' + app[1] + ' ' + app[2] + ' Successfully!!! Rating Value = ' + str(rating))
-            log.write('\n')
-            log.flush()
+            connect_database.update_app_set_mc_star(db=db, app_id=app[0], star=rating)
         else:
-            print(str(app[0]) + ' ' + app[1] + ' ' + app[2] + 'No found rating')
-    log.close()
+            print(str(app[0]) + ' ' + app[1] + ' ' + app[2] + ' No found rating')
+            failed_log = open('./mc_user_app_craw_failed/'+str(app[0])+' '+app[1], 'w')
+            failed_log.write(str(response.content))
+            failed_log.flush()
+            failed_log.close()
+    connect_database.close_database(db)
 
 
 def search_percentage(apps):
-    file_name = './response_app_id/app_id2_percent.txt'
-    log = open(file_name, 'w')
+    db = connect_database.open_database_jojoy()
     for app in apps:
         slug = string_proc.slug_proc(app[2])
         headers = {
@@ -35,10 +36,12 @@ def search_percentage(apps):
         response = requests.get("https://www.metacritic.com/game/ios/" + slug, headers=headers)
         rating = string_proc.find_value_mc_percent(str(response.content))
         if rating != -1:
-            log.write(str(app[0]) + ' ' + app[1] + ' Rating Value = ' + str(rating))
             print(str(app[0]) + ' ' + app[1] + ' ' + app[2] + ' Successfully!!! Rating Value = ' + str(rating))
-            log.write('\n')
-            log.flush()
+            connect_database.update_app_set_mc_user_star(db=db, app_id=app[0], star=rating)
         else:
-            print(str(app[0]) + ' ' + app[1] + ' ' + app[2] + 'No found rating')
-    log.close()
+            print(str(app[0]) + ' ' + app[1] + ' ' + app[2] + ' No found rating')
+            failed_log = open('./mc_app_craw_failed/'+str(app[0]) + ' ' + app[1], 'w')
+            failed_log.write(str(response.content))
+            failed_log.flush()
+            failed_log.close()
+    connect_database.close_database(db)
